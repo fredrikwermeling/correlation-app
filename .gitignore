@@ -1,0 +1,26 @@
+# R specific
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+*.Rproj.user/
+
+# Session Data files
+.httr-oauth
+
+# Shiny token (could contain sensitive info)
+rsconnect/
+
+# Temporary files
+*~
+*.tmp
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Claude Code session files
+.claude/
