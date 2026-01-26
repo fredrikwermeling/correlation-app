@@ -39,24 +39,9 @@ If not already installed:
 - R: https://cran.r-project.org/
 - RStudio: https://posit.co/download/rstudio-desktop/
 
-### 2. Install Required Packages
+### 2. Run the App
 
-Open RStudio and run:
-
-```r
-install.packages(c(
-  "shiny",
-  "shinyjs",
-  "data.table",
-  "ggplot2",
-  "ggrepel",
-  "DT",
-  "httr",
-  "jsonlite",
-  "colourpicker",
-  "bslib"
-))
-```
+Required R packages will be installed automatically on first run.
 
 ## Usage
 
