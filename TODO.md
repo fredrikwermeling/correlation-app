@@ -10,4 +10,6 @@
 
 - [ ] When synonym/orthologues are used, the network iamge doesnt recognize the LFC/FDR of the synonym/orthologues and displays it as "missing" (=gray)
 
-- [ ] Could a feature be used where n genes, not found in the uploaded gene set, are included in the network analysis? eg setting n=10, look for the top 10 strongest correlating genes with each of the uploaded genes, and whow them (indicated as not part of the original gene set), if they connect at least two genes of the uploaded gene set.  
+- [ ] Could a feature be used where n genes, not found in the uploaded gene set, are included in the network analysis? e.g., setting n=10, look for the top 10 strongest correlating genes with each of the uploaded genes, and show them (indicated as not part of the original gene set) if they connect at least two genes of the uploaded gene set.
+
+- [ ] Could the inspector generate a list that identifies hotspot mutations that affect the correlation between 2 genes? It needs to have a cut off for how many cells are part of the 0, 1 and 2 mutations for them to be calculated. Perhaps best to focus on 0 vs 2 mutations? 
