@@ -7,3 +7,5 @@
 - [ ] Ensure exported 3-panel images fully match the on-screen display (cancer type highlighting in export)
 
 - [ ] Create additional infographics/documentation for the app
+
+- [ ] When synonym/orthologues are used, the network iamge doesnt recognize the LFC/FDR of the synonym/orthologues and display it as "missing" (=gray)  
