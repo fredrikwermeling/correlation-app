@@ -1,17 +1,35 @@
 # Gene Correlation Explorer
 
-A Shiny app for analyzing gene correlations using DepMap CRISPR screen data.
+An R Shiny app for analyzing gene-gene correlations in DepMap CRISPR screen data.
 
-Based on Fredrik Wermeling's correlation script.
+![Gene Correlation Explorer Infographic](infographic.png)
 
-## Features
+## Data Requirements
 
-- **Multiple input methods**: Paste genes, upload file, or fetch from GO terms
-- **Two analysis modes**: 
-  - Analysis (correlations within your gene list)
-  - Design (find new genes correlated with your list)
-- **Interactive network visualization**: Zoom, pan, click nodes
-- **Downloadable results**: CSV files for correlations and clusters
+This app requires data files from the [DepMap Portal](https://depmap.org/portal/data_page/?tab=allData). Download the following files:
+
+### Required Files
+
+| File | Description |
+|------|-------------|
+| **CRISPRGeneEffect.csv** | CRISPR gene effect scores (~450MB) |
+| **Model.csv** | Cell line metadata including cancer types |
+
+### Optional Files
+
+| File | Description |
+|------|-------------|
+| **OmicsSomaticMutationsMatrixHotspot.csv** | Mutation data for mutation overlay feature |
+
+### Included in This Repository
+
+| File | Description |
+|------|-------------|
+| **ortholog_lookup_best.csv** | Human-mouse ortholog mapping table |
+
+### Optional User Data
+
+You can upload your own gene statistics (LFC/FDR values) from your experiments to overlay on the correlation plots. The file should be a CSV with columns for gene symbol, log fold change, and FDR.
 
 ## Installation
 
@@ -21,83 +39,53 @@ If not already installed:
 - R: https://cran.r-project.org/
 - RStudio: https://posit.co/download/rstudio-desktop/
 
-### 2. Install required packages
+### 2. Install Required Packages
 
 Open RStudio and run:
 
 ```r
-install.packages(c("shiny", "data.table", "igraph", "ggplot2", "ggraph", 
-                   "DT", "shinyjs", "httr", "jsonlite", "visNetwork"))
-```
-
-### 3. Download DepMap reference data
-
-1. Go to: https://depmap.org/portal/data_page/?tab=allData
-2. Find "CRISPRGeneEffect.csv" (latest release, ~450MB)
-3. Download and save somewhere accessible
-
-## Running the App
-
-### Option 1: Run from RStudio
-
-1. Open `app.R` in RStudio
-2. Click "Run App" button (top right of editor)
-
-### Option 2: Run from R console
-
-```r
-shiny::runApp("path/to/correlation_app")
-```
-
-### Option 3: Run from terminal
-
-```bash
-Rscript -e "shiny::runApp('path/to/correlation_app')"
+install.packages(c(
+  "shiny",
+  "shinyjs",
+  "data.table",
+  "ggplot2",
+  "ggrepel",
+  "DT",
+  "httr",
+  "jsonlite",
+  "colourpicker",
+  "bslib"
+))
 ```
 
 ## Usage
 
-1. **Load Reference Data**: Upload the DepMap CRISPRGeneEffect.csv file
-2. **Input Genes**: 
-   - Paste gene symbols (one per line)
-   - Upload a .txt file
-   - Enter a GO term ID to fetch genes
-3. **Set Parameters**:
-   - Choose Analysis or Design mode
-   - Set correlation cutoff (0.3-0.5 recommended)
-4. **Run Analysis**: Click the button and wait
-5. **Explore Results**:
-   - Interactive network visualization
-   - Downloadable correlation and cluster tables
+### Running the App
 
-## GO Term Import
+**Option 1: From RStudio**
+1. Open `app.R` in RStudio
+2. Click the "Run App" button in the top right of the editor
 
-You can fetch genes associated with any GO term. Examples:
-- `GO:0006955` - immune response
-- `GO:0006915` - apoptotic process  
-- `GO:0007049` - cell cycle
-- `GO:0016310` - phosphorylation
+**Option 2: From R Console**
+```r
+shiny::runApp("/path/to/correlation-app")
+```
 
-## Tips
+**Option 3: From Terminal**
+```bash
+Rscript -e "shiny::runApp('/path/to/correlation-app')"
+```
 
-- Start with a correlation cutoff of 0.5 and adjust as needed
-- Design mode generates larger outputs (genome-wide search)
-- Not all gene symbols may match - check the Summary tab for "not found" genes
-- Use the [Green Listed synonym tool](https://greenlisted.cmm.se/) to find alternative symbols
+### Getting Started
 
-## Future Development
-
-Planned features:
-- KEGG pathway import
-- MSigDB gene set import
-- Cell line filtering
-- Integration with Green Listed website
+1. **Load Reference Data**: Upload the DepMap files (CRISPRGeneEffect.csv, Model.csv, and optionally the mutation matrix)
+2. **Select Genes**: Enter gene symbols for X and Y axes to explore their correlation
+3. **Explore**: View scatter plots, filter by cancer type, overlay mutations, and download results
 
 ## Credits
 
 - DepMap data: https://depmap.org/
 - Wermeling Lab: https://wermelinglab.com/
-- Green Listed: https://greenlisted.cmm.se/
 
 ## License
 
